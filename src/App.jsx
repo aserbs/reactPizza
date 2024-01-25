@@ -1,31 +1,29 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import "./scss/app.scss";
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import PizzaBlock from "./components/PizzaBlock";
+import pizzas from "./assets/pizzas.json";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div class="wrapper">
+    <div className="wrapper">
       <Header />
-      <div class="content">
-        <div class="container">
-          <div class="content__top">
+      <div className="content">
+        <div className="container">
+          <div className="content__top">
             <Categories />
             <Sort />
           </div>
-          <h2 class="content__title">Все пиццы</h2>
-          <div class="content__items">
-            <PizzaBlock title="Мексиканская" price="500" />
-            <PizzaBlock title="Чизбургер" price="400" />
-            <PizzaBlock title="Пеперони" price="300" />
-            <PizzaBlock title="Гавайская" price="200" />
+          <h2 className="content__title">Все пиццы</h2>
+          <div className="content__items">
+            {pizzas.map((pizza, index) => (
+              <PizzaBlock {...pizza} key={index} />
+            ))}
           </div>
         </div>
       </div>

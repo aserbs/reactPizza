@@ -1,26 +1,45 @@
+import React, { useState } from "react";
+
 function PizzaBlock(props) {
+  const typeNames = ["Тонкое", "Традиционное"];
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+
   return (
-    <div class="pizza-block">
-      <img
-        class="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-        alt="Pizza"
-      />
-      <h4 class="pizza-block__title">{props.title}</h4>
-      <div class="pizza-block__selector">
+    <div className="pizza-block">
+      <img className="pizza-block__image" src={props.imageUrl} alt="Pizza" />
+      <h4 className="pizza-block__title">{props.title}</h4>
+      <div className="pizza-block__selector">
         <ul>
-          <li class="active">тонкое</li>
-          <li>традиционное</li>
+          {props.types.map((type, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                setActiveType(type);
+              }}
+              className={activeType == type ? "active" : ""}
+            >
+              {typeNames[type]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li class="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {props.sizes.map((size, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                setActiveSize(index);
+              }}
+              className={activeSize == index ? "active" : ""}
+            >
+              {size} см.
+            </li>
+          ))}
         </ul>
       </div>
-      <div class="pizza-block__bottom">
-        <div class="pizza-block__price">от {props.price} $</div>
-        <div class="button button--outline button--add">
+      <div className="pizza-block__bottom">
+        <div className="pizza-block__price">от {props.price} $</div>
+        <div className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -34,7 +53,7 @@ function PizzaBlock(props) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
+          <i>0</i>
         </div>
       </div>
     </div>
