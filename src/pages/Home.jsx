@@ -14,13 +14,14 @@ function Home() {
         setItems(arr);
         setIsLoading(false);
       });
+    window.scrollTo(0, 0);
   }, []);
 
   const [items, setItems] = useState([]);
   const [count, setCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <>
+    <div className="container">
       <div className="content__top">
         <Categories />
         <Sort />
@@ -31,7 +32,7 @@ function Home() {
           ? [...new Array(9)].map((_, index) => <SkeletonLoader key={index} />)
           : items.map((pizza, index) => <PizzaBlock {...pizza} key={index} />)}
       </div>
-    </>
+    </div>
   );
 }
 
